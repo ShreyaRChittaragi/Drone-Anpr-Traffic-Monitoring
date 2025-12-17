@@ -1,98 +1,78 @@
-Drone-Based Traffic Video Analysis (ANPR)
-Overview
+# Drone-Based Traffic Video Analysis (ANPR)
 
-This project implements a traffic video analysis pipeline focused on Automatic Number Plate Recognition (ANPR).
-It processes traffic or drone footage to detect license plates using YOLO, extract text using OCR, and demonstrate how such data can flow through a real-time cloud-style architecture.
+---
 
-The design follows this pipeline:
+## Overview
+This project implements a traffic video analysis pipeline focused on
+Automated Number Plate Recognition (ANPR). It processes traffic or drone
+footage to detect license plates using YOLO and extract plate numbers
+using OCR.
+
+The system demonstrates the following architecture:
 
 DRONE → KINESIS → YOLO → OCR → DYNAMODB → DASHBOARD
 
-Cloud services are mocked to explain the architecture and data flow.
+Cloud components are mocked to explain data flow and system design.
 
-What This Project Does
+---
 
-Reads traffic / drone video footage
+## Features
+- YOLO-based license plate detection (.pt model support)
+- OCR extraction using EasyOCR / Tesseract
+- Frame skipping for efficient processing
+- Bounding box visualization on video frames
+- Confidence scoring and timestamped detections
+- Mock AWS Kinesis Video Streams integration
+- Mock AWS DynamoDB storage flow
 
-Detects license plates using a YOLO model
+---
 
-Crops detected plate regions
+## Tech Stack
+- Python
+- OpenCV
+- Ultralytics YOLO (YOLOv5 / YOLOv8)
+- EasyOCR / Tesseract
+- NumPy
+- Matplotlib
 
-Extracts plate text using OCR
+---
 
-Attaches confidence scores and timestamps
-
-Demonstrates how detections can be streamed and stored
-
-Key Features
-
-YOLO-based license plate detection (.pt support)
-
-OCR using EasyOCR / Tesseract
-
-Frame skipping for efficient processing
-
-Bounding box visualization on frames
-
-Timestamped and confidence-based results
-
-Mock integration of AWS Kinesis and DynamoDB
-
-Tech Stack
-
-Python
-
-OpenCV
-
-Ultralytics YOLO (YOLOv5 / YOLOv8)
-
-EasyOCR / Tesseract
-
-NumPy
-
-Matplotlib
-
-Project Structure
+## Project Structure
 drone-anpr-traffic-monitoring/
-├── notebooks/        # Main notebook
-├── data/             # Input videos
-├── models/           # YOLO .pt models
-├── outputs/          # Annotated frames / logs
-├── src/              # Future modularization
+├── notebooks/ # Main notebook
+├── data/ # Input videos
+├── models/ # YOLO .pt models
+├── outputs/ # Annotated frames / logs
+├── src/ # Future modularization
 └── README.md
 
-How It Works
+---
 
-Upload a traffic or drone video
+## How It Works
+1. Upload a traffic or drone video
+2. Video is decoded into frames
+3. YOLO detects license plates
+4. Detected regions are cropped
+5. OCR extracts plate text
+6. Results are logged with confidence and timestamps
+7. Output frames are visualized
 
-Video is processed frame by frame
+---
 
-YOLO detects license plates
+## Use Cases
+- Traffic monitoring
+- ANPR system demonstration
+- Smart city research
+- Computer vision portfolios
 
-OCR extracts text from detected plates
+---
 
-Results are logged with confidence and timestamps
+## Notes
+- AWS components are mocked
+- Focus is on pipeline design and system flow
+- Intended for educational and portfolio use
 
-Output frames are visualized
+---
 
-Use Cases
-
-Traffic monitoring and analysis
-
-ANPR system demonstration
-
-Smart city and surveillance research
-
-Computer vision system design portfolios
-
-Notes
-
-Cloud components (Kinesis, DynamoDB) are mocked
-
-The focus is on pipeline design and system flow
-
-Intended for learning, demonstration, and portfolio use
-
-License
-
+## License
 MIT License
